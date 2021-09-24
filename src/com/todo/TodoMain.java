@@ -25,23 +25,30 @@ public class TodoMain {
 
 			case "add":
 				TodoUtil.createItem(l);
-				System.out.println("Add Complete!!!");
 				break;
 			
 			case "del":
 				TodoUtil.deleteItem(l);
-				System.out.println("Delete Complete!!!");
 				break;
 				
 			case "edit":
 				TodoUtil.updateItem(l);
-				System.out.println("Update Complete!!!");
 				break;
 				
 			case "ls":
 				TodoUtil.listAll(l);
 				break;
+				
+			case "find":
+				String data = sc.next();
+				TodoUtil.find(data,l);
+				break;
 
+			case "find_cate":
+				String cate = sc.next();
+				TodoUtil.find_cate(cate, l);
+				break;
+				
 			case "ls_name_asc":
 				l.sortByName();
 				System.out.println("Ascending Sort Complete!!!");
@@ -59,6 +66,17 @@ public class TodoMain {
 				l.sortByDate();
 				System.out.println("Sort by Date order Complete!!!");
 				isList = true;
+				break;
+			
+			case "ls_date_desc":
+				l.sortByDate();
+				l.reverseDate();
+				System.out.println("Reverse Sort by Date Order Complete!!!");
+				isList = true;
+				break;
+				
+			case "ls_cate" :
+				TodoUtil.ls_cate(l);
 				break;
 				
 			case "help":

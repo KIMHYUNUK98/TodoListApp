@@ -49,6 +49,10 @@ public class TodoList {
 	public void sortByDate() {
 		Collections.sort(list, new TodoSortByDate());
 	}
+	
+	public void reverseDate() {
+		Collections.reverse(list);
+	}
 
 	public int indexOf(TodoItem t) {
 		return list.indexOf(t);
@@ -59,5 +63,15 @@ public class TodoList {
 			if (title.equals(item.getTitle())) return true;
 		}
 		return false;
+	}
+
+	public int length() {
+		// TODO Auto-generated method stub
+		return list.size();
+	}
+
+	public boolean contains(String data) {
+		// TODO Auto-generated method stub
+		return list.contains(data);
 	}
 }
