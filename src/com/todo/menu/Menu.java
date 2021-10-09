@@ -16,6 +16,8 @@ public class Menu {
         System.out.println("- ls_name_desc (List Name in Descending)");
         System.out.println("- ls_date (List by Date)");
         System.out.println("- ls_date_desc (Reverse by Date)");
+        System.out.println("- comp (Check the list you completed)");
+        System.out.println("- ls_comp (List your completed thingks)");
         System.out.println("- exit (Exit the Program)");
     }
     public static void prompt() 

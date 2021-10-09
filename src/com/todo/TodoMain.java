@@ -12,14 +12,14 @@ public class TodoMain {
 	
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
+		l.importData("todolist.txt");
 		boolean isList = false;
 		boolean quit = false;
 		
-		TodoUtil.loadlist(l, "todolist.txt");
+		//TodoUtil.loadlist(l, "todolist.txt");
 		Menu.displaymenu();
 		do {
 			Menu.prompt();
-			isList = false;
 			String choice = sc.next();
 			switch (choice) {
 
@@ -40,43 +40,46 @@ public class TodoMain {
 				break;
 				
 			case "find":
-				String data = sc.next();
+				String data = sc.nextLine().trim();
 				TodoUtil.find(data,l);
 				break;
 
 			case "find_cate":
-				String cate = sc.next();
-				TodoUtil.find_cate(cate, l);
+				String cate = sc.nextLine().trim();
+				TodoUtil.findCateList(l, cate);
 				break;
 				
 			case "ls_name_asc":
-				l.sortByName();
 				System.out.println("Ascending Sort Complete!!!");
-				isList = true;
+				TodoUtil.listAll(l, "title", 1);
 				break;
 
 			case "ls_name_desc":
-				l.sortByName();
-				l.reverseList();
 				System.out.println("Descending Sort Complete!!!");
-				isList = true;
+				TodoUtil.listAll(l, "title", 0);
 				break;
 				
 			case "ls_date":
-				l.sortByDate();
 				System.out.println("Sort by Date order Complete!!!");
-				isList = true;
+				TodoUtil.listAll(l, "due_date", 1);
 				break;
 			
 			case "ls_date_desc":
-				l.sortByDate();
-				l.reverseDate();
 				System.out.println("Reverse Sort by Date Order Complete!!!");
-				isList = true;
+				TodoUtil.listAll(l, "due_date", 0);
 				break;
 				
 			case "ls_cate" :
-				TodoUtil.ls_cate(l);
+				TodoUtil.listCateAll(l);
+				break;
+				
+			case "comp":
+				int number = sc.nextInt();
+				TodoUtil.completeItem(l, number);
+				break;
+				
+			case "ls_comp":
+				TodoUtil.complistAll(l);
 				break;
 				
 			case "help":
@@ -91,8 +94,6 @@ public class TodoMain {
 				System.out.println("You should check your command (- help) ");
 				break;
 			}
-			
-			if(isList) l.listAll();
 		} while (!quit);
 		TodoUtil.saveList(l, "todolist.txt");
 	}
